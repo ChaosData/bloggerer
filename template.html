@@ -1,0 +1,186 @@
+<hr />
+<h1 id="tldr">tl;dr</h1>
+<p>Write your markdown and run:</p>
+<pre style="color:#839496; background-color:#002b36; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;">pandoc -t json template.md | python3 ./pandoc.py html | pandoc -f json -t html -o template.html
+</pre>
+<h1 id="first-section">First Section</h1>
+<p>This is some text and stuff. Lorem ipsum is fine for filling space but it doesn’t self document like this template does. But pretty much everything is vanilla markdown unless otherwise noted. Even references<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> work.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p><strong><em>Note:</em></strong> That thing above the first section is a line spacer. They look nice. Use them.</p>
+<h2 id="subsection">Subsection</h2>
+<p>Et voila!</p>
+<h3 id="subsubsection">SubSubSection</h3>
+<p><em>bwongggg!</em></p>
+<h4 id="inception">Inception</h4>
+<p>Four! Count them. A four-levels deep sub-sub-sub-section. You should try to stick to three though.</p>
+<h1 id="section-section-equilibrium">Section Section: Equilibrium</h1>
+<p>If you want to link to a section, you just put in a link like <a href="#section-four-breakdown">this</a> that’s named exactly after a (sub)*section, but replacing the spaces with hyphens and removing special characters. It’s time to get listy:</p>
+<ol type="1">
+<li>One</li>
+<li>Two
+<ul>
+<li>a</li>
+<li>b
+<ol type="1">
+<li>one</li>
+<li>two</li>
+</ol>
+<ul>
+<li>a</li>
+<li>b</li>
+</ul></li>
+<li>c</li>
+</ul></li>
+<li>Three
+<ol type="1">
+<li>one</li>
+<li>two</li>
+<li>three</li>
+</ol></li>
+</ol>
+<ul>
+<li>A
+<ul>
+<li>a</li>
+<li>b</li>
+</ul></li>
+<li>B
+<ol type="1">
+<li>one</li>
+<li>two</li>
+</ol></li>
+<li>C</li>
+</ul>
+<h1 id="section-three-code-snippets">Section Three: Code Snippets</h1>
+<p>The standard GitHub/GitLab formatting applies.</p>
+<p>If you want vanilla terminal output, don’t set a language, or use <code>txt</code>.</p>
+<pre style="color:#839496; background-color:#002b36; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;">$ # testing 1, 2, 3
+$ ./exploit 0xffffff
+# whoami
+root
+</pre>
+<p>However, if you want to just have your terminal output highlighted, use <code>console</code>. When you do, you’ll need to replace <code>#</code> with <code>$$</code> for root shell prompts if you don’t want the line commented out.</p>
+<pre style="color:#839496; background-color:#002b36; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;">$ <span style="color:#586e75"># testing 1, 2, 3</span>
+$ .<span style="color:#93a1a1">/</span>exploit <span style="color:#dc322f">0xffffff</span>
+# whoami
+root
+</pre>
+<pre style="color:#f8f8f2; background-color:#272822; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;"><span style="color:#75715e">#!/bin/sh</span>
+
+<span style="color:#66d9ef">read -r</span> SANITIZER <span style="color:#e6db74">&lt;&lt;&quot;EOF&quot;</span>
+<span style="color:#e6db74">s/&#39;/&#39;</span><span style="color:#66d9ef; font-style:italic">\\</span><span style="color:#e6db74">&#39;&#39;/g</span>
+<span style="color:#e6db74">EOF</span>
+<span style="color:#e6db74"></span>
+<span style="color:#e6db74">ESCAPED=`echo &quot;</span><span style="color:#66d9ef; font-style:italic">${1}</span><span style="color:#e6db74">&quot; | sed &quot;</span><span style="color:#66d9ef; font-style:italic">${SANITIZER}</span><span style="color:#e6db74">&quot;`</span>
+<span style="color:#e6db74"></span>
+<span style="color:#e6db74">echo &quot;echo &#39;</span><span style="color:#66d9ef; font-style:italic">${ESCAPED}</span><span style="color:#e6db74">&#39;&quot;</span>
+<span style="color:#e6db74">/bin/sh -c &quot;echo &#39;</span><span style="color:#66d9ef; font-style:italic">${ESCAPED}</span><span style="color:#e6db74">&#39;&quot;</span>
+</pre>
+<pre style="color:#f8f8f2; background-color:#272822; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;"><span style="color:#defa25">#include &lt;stdio.h&gt;</span>
+
+<span style="color:#66d9ef">int</span> <span style="color:#25faac">main</span><span style="color:#f8f8f2">(</span><span style="color:#66d9ef">int</span> argc<span style="color:#f8f8f2">,</span> <span style="color:#66d9ef">char</span><span style="color:#f8f8f2">**</span> argv<span style="color:#f8f8f2">) {</span>
+  <span style="color:#25faac">puts</span><span style="color:#f8f8f2">(</span><span style="color:#e6db74">&quot;hello&quot;</span><span style="color:#f8f8f2">);</span>
+
+  <span style="color:#f92672; font-weight:bold">return</span> <span style="color:#ae81ff">0</span><span style="color:#f8f8f2">;</span>
+<span style="color:#f8f8f2">}</span>
+</pre>
+<p>You can also use the <code>```{.langname}</code> syntax if you want as long as the name is the first one listed.</p>
+<pre style="color:#f8f8f2; background-color:#272822; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;"><span style="color:#defa25">#include &lt;stdio.h&gt;</span>
+
+<span style="color:#66d9ef">int</span> <span style="color:#25faac">main</span><span style="color:#f8f8f2">(</span><span style="color:#66d9ef">int</span> argc<span style="color:#f8f8f2">,</span> <span style="color:#66d9ef">char</span><span style="color:#f8f8f2">**</span> argv<span style="color:#f8f8f2">) {</span>
+  <span style="color:#25faac">puts</span><span style="color:#f8f8f2">(</span><span style="color:#e6db74">&quot;hello&quot;</span><span style="color:#f8f8f2">);</span>
+
+  <span style="color:#f92672; font-weight:bold">return</span> <span style="color:#ae81ff">0</span><span style="color:#f8f8f2">;</span>
+<span style="color:#f8f8f2">}</span>
+</pre>
+<h1 id="section-four-breakdown">Section Four: Breakdown</h1>
+<p>Sometimes, you might have a lot of content that doesn’t need to be seen 100% of the time, and takes up a bunch of page space to scroll through it.</p>
+<p>You can use the GitLab/GitHub-style <code>&lt;details&gt;</code> tag to make collapsible sections.</p>
+<details>
+<summary>
+Summary Text
+</summary>
+<pre style="color:#839496; background-color:#002b36; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;">                    `.------.`
+               ./oshhhhhhhhhhhhso/-
+           `:oyhhhhhhhhhhhhhhhhhhhhyo:`
+         `+yhhhhhhhhhhhhhhhhhhhhhhhhhhy+`
+       `/hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh+`
+      .yhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhy+
+     -yhhhhhhhhhhhhhhhhhhhhhhy+:-.``..-..
+    .yhhhhhhhhhhhhhhhhhhhhho.     ``
+    shhhhhhhhhhhhhhhhhhhhh:  `:oys:`
+   -hhhhhhhhhhhhhhhhhhhhy- .ohhy:    .-:::-.
+   +hhhhhhhhhhhhhhhhhhho.`+hhh+`  :shhhhhhhhhs:
+   ohhhhhhhhhhhhhhhyo/..+yyo:`   `..-:/osyys+-
+   +hhhhhhyo+++:-----....`  `-:::-`
+   -hhhhyssyhysyhhhhhho- ./shhhhhhhys+:.
+    shysoo++/+ossso+:`./shhhhhhhhhhhhhhhhyssyy
+    .yhhhhhhhyso+++osyhhhhhhhhhhhhhhhhhhhhhhh-
+     -yhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-
+      .yhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhy.
+       `/hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh+`
+         `+yhhhhhhhhhhhhhhhhhhhhhhhhhhy+.
+           `:oyhhhhhhhhhhhhhhhhhhhhyo:`
+               -/oshhhhhhhhhhhhso/-
+                    `.--::--.`
+</pre>
+</details>
+<p>You can also embed them in lists.</p>
+<ol type="1">
+<li><p>Hello</p></li>
+<li><p>World.</p></li>
+</ol>
+<details style="margin: -2em 0 0 2em;">
+<summary>
+Summary Text
+</summary>
+<pre style="color:#839496; background-color:#002b36; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;">                    `.------.`
+               ./oshhhhhhhhhhhhso/-
+           `:oyhhhhhhhhhhhhhhhhhhhhyo:`
+         `+yhhhhhhhhhhhhhhhhhhhhhhhhhhy+`
+       `/hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh+`
+      .yhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhy+
+     -yhhhhhhhhhhhhhhhhhhhhhhy+:-.``..-..
+    .yhhhhhhhhhhhhhhhhhhhhho.     ``
+    shhhhhhhhhhhhhhhhhhhhh:  `:oys:`
+   -hhhhhhhhhhhhhhhhhhhhy- .ohhy:    .-:::-.
+   +hhhhhhhhhhhhhhhhhhho.`+hhh+`  :shhhhhhhhhs:
+   ohhhhhhhhhhhhhhhyo/..+yyo:`   `..-:/osyys+-
+   +hhhhhhyo+++:-----....`  `-:::-`
+   -hhhhyssyhysyhhhhhho- ./shhhhhhhys+:.
+    shysoo++/+ossso+:`./shhhhhhhhhhhhhhhhyssyy
+    .yhhhhhhhyso+++osyhhhhhhhhhhhhhhhhhhhhhhh-
+     -yhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-
+      .yhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhy.
+       `/hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh+`
+         `+yhhhhhhhhhhhhhhhhhhhhhhhhhhy+.
+           `:oyhhhhhhhhhhhhhhhhhhhhyo:`
+               -/oshhhhhhhhhhhhso/-
+                    `.--::--.`
+</pre>
+</details>
+<h1 id="images">Images</h1>
+<p>Images are great, but WordPress strips out data: URIs from img src attributes, and also removes a bunch of inline CSS style values (not to mention <code>&lt;style&gt;</code> elements). You can hotlink them.</p>
+<pre style="color:#839496; background-color:#002b36; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;">![](https://www.nccgroup.com/static-a/img/logos/logo-nccgroup-blue.svg)
+</pre>
+<p><img src="https://www.nccgroup.com/static-a/img/logos/logo-nccgroup-blue.svg" /></p>
+<p>…but we also have a workaround using CSS escapes to load in base64 data URIs.</p>
+<pre style="color:#839496; background-color:#002b36; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;">It is a mystery. &lt;div style=&quot;background: url(&#39;\64\61\74\61\3a\69\6d\61\67\65\2f\70\6e\67\3b\62\61\73\65\36\34\2c iVBORw0KGgoAAAANSUhEUgAAABoAAAAXCAIAAACatshHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAApUlEQVQ4y8WUSQ7AIAhF4cf7X5kubA1ODMakrFD5T6BUFhG6Z8U+ZuZ508ig2KylcrdPRHBZzFxzbI6ILLO2cDO0OUY8UmXq9i25cLs%2bFDhfo4VdLfrAHaAWXIUvRy9s5RAzqOoSuhD+zB3X4Vt32c23RfJdBiPerF2Z2kdqDlxDVmD3AalBdXsKumr/4dxKE7gIK4oLsqLPZ2LCd8/3wd+yxR3bAyjQhzmpM0GfAAAAAElFTkSuQmCC&#39;) no-repeat;&quot;&gt;&amp;nbsp;&lt;/div&gt;
+</pre>
+It is a mystery.
+<div style="background: url('\64\61\74\61\3a\69\6d\61\67\65\2f\70\6e\67\3b\62\61\73\65\36\34\2c iVBORw0KGgoAAAANSUhEUgAAABoAAAAXCAIAAACatshHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAApUlEQVQ4y8WUSQ7AIAhF4cf7X5kubA1ODMakrFD5T6BUFhG6Z8U+ZuZ508ig2KylcrdPRHBZzFxzbI6ILLO2cDO0OUY8UmXq9i25cLs%2bFDhfo4VdLfrAHaAWXIUvRy9s5RAzqOoSuhD+zB3X4Vt32c23RfJdBiPerF2Z2kdqDlxDVmD3AalBdXsKumr/4dxKE7gIK4oLsqLPZ2LCd8/3wd+yxR3bAyjQhzmpM0GfAAAAAElFTkSuQmCC') no-repeat;">&nbsp;</div>
+<p><strong><em>Note:</em></strong> Pandoc seems to escape the single quotes by default, which causes WordPress’ CSS mangler to ruin the input. We get around this with some magic in the custom Pandoc filter script, but we also support a simple shorthand for file URI images.</p>
+<pre style="color:#839496; background-color:#002b36; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;">It is a mystery. ![](file://mystery.png)
+</pre>
+<p>It is a mystery. <div style="background: url('\64\61\74\61\3a\69\6d\61\67\65\2f\70\6e\67\3b\62\61\73\65\36\34\2c iVBORw0KGgoAAAANSUhEUgAAABoAAAAXCAIAAACatshHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAApUlEQVQ4y8WUSQ7AIAhF4cf7X5kubA1ODMakrFD5T6BUFhG6Z8U+ZuZ508ig2KylcrdPRHBZzFxzbI6ILLO2cDO0OUY8UmXq9i25cLs+FDhfo4VdLfrAHaAWXIUvRy9s5RAzqOoSuhD+zB3X4Vt32c23RfJdBiPerF2Z2kdqDlxDVmD3AalBdXsKumr/4dxKE7gIK4oLsqLPZ2LCd8/3wd+yxR3bAyjQhzmpM0GfAAAAAElFTkSuQmCC') no-repeat;">&nbsp;</div></p>
+<p>However, due to the limitations of wordpress, getting the image to show up on the same requires some… “low-level” handling.</p>
+<pre style="color:#839496; background-color:#002b36; font-size:10pt; font-family:'PT Mono', monospace; padding: 1rem; border-radius: 2px; overflow-x: auto;white-space: pre-wrap;">&lt;span style=&quot;float: left;&quot;&gt;It is a mystery.&lt;/span&gt;&lt;span style=&quot;background: url(&#39;\64\61\74\61\3a\69\6d\61\67\65\2f\70\6e\67\3b\62\61\73\65\36\34\2c iVBORw0KGgoAAAANSUhEUgAAABoAAAAXCAIAAACatshHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAApUlEQVQ4y8WUSQ7AIAhF4cf7X5kubA1ODMakrFD5T6BUFhG6Z8U+ZuZ508ig2KylcrdPRHBZzFxzbI6ILLO2cDO0OUY8UmXq9i25cLs%2bFDhfo4VdLfrAHaAWXIUvRy9s5RAzqOoSuhD+zB3X4Vt32c23RfJdBiPerF2Z2kdqDlxDVmD3AalBdXsKumr/4dxKE7gIK4oLsqLPZ2LCd8/3wd+yxR3bAyjQhzmpM0GfAAAAAElFTkSuQmCC&#39;) no-repeat; float: left; width: 40px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;br&gt;
+</pre>
+<p><span style="float: left;">It is a mystery.</span><span style="background: url('\64\61\74\61\3a\69\6d\61\67\65\2f\70\6e\67\3b\62\61\73\65\36\34\2c iVBORw0KGgoAAAANSUhEUgAAABoAAAAXCAIAAACatshHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAApUlEQVQ4y8WUSQ7AIAhF4cf7X5kubA1ODMakrFD5T6BUFhG6Z8U+ZuZ508ig2KylcrdPRHBZzFxzbI6ILLO2cDO0OUY8UmXq9i25cLs%2bFDhfo4VdLfrAHaAWXIUvRy9s5RAzqOoSuhD+zB3X4Vt32c23RfJdBiPerF2Z2kdqDlxDVmD3AalBdXsKumr/4dxKE7gIK4oLsqLPZ2LCd8/3wd+yxR3bAyjQhzmpM0GfAAAAAElFTkSuQmCC') no-repeat; float: left; width: 40px;">&nbsp;</span><br></p>
+<p><strong><em>Note:</em></strong> The Pandoc filter handler only recognizes these constructions for <code>div</code> and <code>span</code> when the <code>style</code> attribute starts with <code>background: url('</code>.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Look, it’s a <a href="https://www.nccgroup.trust/us" class="uri">https://www.nccgroup.trust/us</a> link!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Another reference!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
