@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# Copyright (c) NCC Group, 2020-2022
+# Copyright (c) 2020-2022 NCC Group,
+#               2023 Jeff Dileo.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -23,8 +24,6 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-
-# pandoc -t json blog.md | python3.8 path/to/pandoc.py html | pandoc -f json -t html -o blog.html && cat blog.html | pbcopy
 
 import panflute as pf
 import sys
@@ -161,5 +160,11 @@ def header(elem, doc):
         sys.stderr.write(os.path.join(os.path.realpath('.'), f) + "\n")
   return elem
 
+def entrypoint(_in=None, _out=None):
+  if _in is None:
+    pf.run_filter(header)
+  else:
+    return pf.run_filter(header, input_stream=_in, output_stream=_out)
+
 if __name__ == "__main__":
-  pf.run_filter(header)
+  entrypoint()
